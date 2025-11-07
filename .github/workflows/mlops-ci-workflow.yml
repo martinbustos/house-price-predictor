@@ -38,13 +38,13 @@ jobs:
               --output data/processed/featured_house_data.csv  \
               --preprocessor models/trained/preprocessor.pkl
       
-       - name: Set Up MLFlow Step
+      - name: Set Up MLFlow Step
         run: |
           podman pull ghcr.io/mlflow/mlflow:latest
           podman run -d -p 5555:5000 --name mlflow-server ghcr.io/mlflow/mlflow:latest \
           mlflow server --host 0.0.0.0 \
-          --backend-store-uri sqlite:///mlflow.db \
-          --default-artifact-root /tmp/mlruns
+              --backend-store-uri sqlite:///mlflow.db \
+              --default-artifact-root /tmp/mlruns
 
       - name: Run Model Training Step
         run: |
@@ -57,5 +57,5 @@ jobs:
       - name: Cleaning Up MLFlow
         run: |
           podman stop mlflow-server
-          podman rm mlflows-erver
-          podmn  rmi  ghcr.io/mlflow/mlflow:latest
+          podman rm mlflow-server
+          podman  rmi  ghcr.io/mlflow/mlflow:latest
