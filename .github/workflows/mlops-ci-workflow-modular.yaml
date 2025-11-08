@@ -19,7 +19,7 @@ on:
         description: 'Run Docker build and push step' 
         required: false
         default: 'false'
-  releases:
+  release:
     types: [created]
     branches: [main]
     tags: ['v*.*.*']
